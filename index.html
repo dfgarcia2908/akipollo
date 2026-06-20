@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AKI POLLO POS</title>
+  <style>
+    :root{
+      --bg:#fff7ed;
+      --panel:rgba(255,255,255,.94);
+      --line:#fed7aa;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --brand:#ea580c;
+      --brand2:#dc2626;
+      --shadow:0 12px 30px rgba(0,0,0,.08);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Segoe UI,Arial,sans-serif;
+      color:var(--text);
+      background:
+        linear-gradient(rgba(255,247,237,.82), rgba(255,237,213,.9)),
+        url('./img/hero-1.jpeg') center/cover fixed no-repeat;
+    }
+    .app{
+      display:grid;
+      grid-template-columns:260px 1fr 390px;
+      gap:16px;
+      padding:16px;
+      min-height:100vh;
+    }
+    .sidebar,.main,.rightbar{
+      background:var(--panel);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,.8);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .sidebar{padding:18px}
+    .main{padding:18px}
+    .rightbar{padding:18px}
+    .logo{
+      text-align:center;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:16px;
+    }
+    .logo img{
+      width:100%;
+      max-height:120px;
+      object-fit:contain;
+      border-radius:16px;
+      background:#fff;
+      padding:10px;
+      border:1px solid #ffe7cf;
+    }
+    .logo h2{margin:10px 0 0}
+    .logo small{color:var(--muted)}
+    .user-card{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      background:#fff7ed;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      margin-bottom:16px;
+    }
+    .avatar{
+      width:46px;height:46px;border-radius:14px;
+      background:#111827;color:#fff;
+      display:grid;place-items:center;font-weight:800;
+    }
+    .nav{display:flex;flex-direction:column;gap:10px}
+    .nav button{
+      border:none;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:12px 14px;
+      border-radius:14px;
+      text-align:left;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .nav button.active,.nav button:hover{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#fff;
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .btn{
+      border:none;
+      border-radius:14px;
+      padding:12px 16px;
+      cursor:pointer;
+      font-weight:800;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#fff;
+    }
+    .btn-light{
+      background:#fff;
+      border:1px solid var(--line);
+    }
+    .hero{
+      background:
+        linear-gradient(90deg, rgba(17,24,39,.7), rgba(17,24,39,.35)),
+        url('./img/hero-1.jpeg') center/cover no-repeat;
+      color:#fff;
+      border-radius:22px;
+      padding:28px;
+      margin-bottom:18px;
+      min-height:180px;
+      display:flex;
+      flex-direction:column;
+      justify-content:end;
+      box-shadow:var(--shadow);
+    }
+    .hero h3{margin:0 0 8px;font-size:32px}
+    .hero p{margin:0;color:rgba(255,255,255,.92)}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .stat,.card{
+      background:#fff;
+      border:1px solid #ffe7cf;
+      border-radius:18px;
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+    .stat span{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+    .stat b{font-size:24px}
+    .page{display:none}
+    .page.active{display:block}
+    .search,.input,select{
+      width:100%;
+      padding:12px 14px;
+      border:1px solid #fdba74;
+      border-radius:14px;
+      background:#fff;
+      margin-bottom:8px;
+    }
+    .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip{
+      border:none;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .chip.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+    .sale-layout{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+    }
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    .product{
+      background:#fff;
+      border:1px solid #ffe7cf;
+      border-radius:18px;
+      padding:12px;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      transition:.2s ease;
+    }
+    .product:hover{transform:translateY(-3px)}
+    .product-photo{
+      height:130px;
+      border-radius:14px;
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      margin-bottom:10px;
+      border:1px solid #ffe7cf;
+    }
+    .field-grid,.grid.cols-3{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .types{display:flex;flex-wrap:wrap;gap:8px}
+    .types button{
+      border:none;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .types button.active{background:#111827;color:#fff}
+    .cart{display:flex;flex-direction:column;gap:10px;min-height:220px}
+    .cart-row{
+      background:#fff;
+      border:1px solid #ffe7cf;
+      border-radius:16px;
+      padding:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .qty{display:flex;gap:8px;align-items:center}
+    .qty button{
+      width:32px;height:32px;border:none;border-radius:10px;
+      background:#fff;border:1px solid var(--line);cursor:pointer;
+    }
+    .totals{border-top:1px solid #ffe7cf;margin-top:14px;padding-top:14px;display:flex;flex-direction:column;gap:10px}
+    .totals div{display:flex;justify-content:space-between}
+    .grand{font-size:22px;font-weight:800}
+    .table-wrap{overflow:auto;margin-top:12px}
+    table{width:100%;border-collapse:collapse;background:#fff}
+    th,td{padding:12px 10px;border-bottom:1px solid #ffedd5;text-align:left;font-size:14px}
+    th{background:#fff7ed}
+    td button{
+      border:1px solid #fdba74;background:#fff;padding:7px 12px;border-radius:10px;cursor:pointer;font-weight:700;
+    }
+    .modal{
+      position:fixed;inset:0;background:rgba(17,24,39,.45);
+      display:none;align-items:center;justify-content:center;padding:16px;z-index:999;
+    }
+    .modal.open{display:flex}
+    .modal-card{
+      width:100%;max-width:560px;background:#fff;border-radius:24px;padding:22px;box-shadow:0 30px 60px rgba(15,23,42,.18);
+    }
+    .modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px;flex-wrap:wrap}
+    .toast{
+      position:fixed;right:18px;bottom:18px;background:#111827;color:#fff;padding:12px 16px;border-radius:14px;opacity:0;transform:translateY(10px);transition:.2s ease;z-index:1000;
+    }
+    .toast.show{opacity:1;transform:translateY(0)}
+    .payment-methods{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin:14px 0;
+    }
+    .payment-btn{
+      border:2px solid #fed7aa;
+      background:#fff;
+      padding:14px;
+      border-radius:18px;
+      cursor:pointer;
+      font-weight:700;
+      transition:.2s ease;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:140px;
+    }
+    .payment-btn.active{
+      border-color:var(--brand);
+      box-shadow:0 0 0 4px rgba(234,88,12,.12);
+    }
+    .payment-btn img{
+      max-width:120px;
+      max-height:60px;
+      object-fit:contain;
+      display:block;
+    }
+    .payment-title{font-size:14px;font-weight:800;text-align:center}
+    .payment-sub{font-size:12px;color:var(--muted);text-align:center}
+    .payment-icon-fallback{font-size:34px}
+    @media (max-width:1180px){
+      .app{grid-template-columns:220px 1fr}
+      .rightbar{grid-column:1 / -1}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .sale-layout{grid-template-columns:1fr}
+    }
+    @media (max-width:780px){
+      .app{grid-template-columns:1fr}
+      .stats,.field-grid,.grid.cols-3,.payment-methods{grid-template-columns:1fr}
+      .product-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="./img/logo.jpeg" alt="AKI POLLO Logo" onerror="this.style.display='none'">
+        <h2>AKI POLLO</h2>
+        <small>Sistema POS</small>
+      </div>
+
+      <div class="user-card">
+        <div class="avatar" id="activeUserAvatar">—</div>
+        <div>
+          <b id="activeUserName">SIN SESIÓN</b><br>
+          <span id="activeUserRole">● Caja cerrada</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="active" data-page="inicio">🏠 Inicio</button>
+        <button data-page="vender">🛒 Vender</button>
+        <button data-page="ventas">🧾 Ventas</button>
+        <button data-page="cajeros">👥 Cajeros</button>
+        <button data-page="facturacion">📄 Facturación</button>
+      </nav>
+
+      <div style="margin-top:16px;padding:14px;border-radius:16px;background:#fff7ed;border:1px solid #fed7aa;">
+        <small>Fecha actual</small>
+        <div id="today" style="font-weight:800;margin-top:6px;">—</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h2 id="pageTitle" style="margin:0;">Inicio</h2>
+          <p style="margin:6px 0 0;color:#6b7280;">Control de caja, productos y ventas.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-light" onclick="logout()">Cerrar caja</button>
+          <button class="btn btn-primary" onclick="goPage('vender')">Nueva venta</button>
+        </div>
+      </div>
+
+      <section id="inicio" class="page active">
+        <div class="hero">
+          <h3>Sabor que vende</h3>
+          <p>Gestiona tus pedidos, pagos y facturación electrónica desde un solo lugar.</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><span>Ventas de hoy</span><b id="todaySales">$0</b></div>
+          <div class="stat"><span>Pedidos de hoy</span><b id="todayOrders">0</b></div>
+          <div class="stat"><span>Ticket promedio</span><b id="averageTicket">$0</b></div>
+          <div class="stat"><span>Productos activos</span><b id="activeProductCount">0</b></div>
+        </div>
+      </section>
+
+      <section id="vender" class="page">
+        <div class="sale-layout">
+          <div class="card">
+            <h3>Catálogo de productos</h3>
+            <input id="productSearch" class="search" placeholder="Buscar por nombre o código">
+            <div id="chips" class="chip-row"></div>
+            <div id="productGrid" class="product-grid"></div>
+          </div>
+
+          <div class="card">
+            <h3>Datos de la venta</h3>
+
+            <div style="margin-bottom:12px;">
+              <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Tipo de pedido</label>
+              <div class="types">
+                <button class="active">Mesa</button>
+                <button>Llevar</button>
+                <button>Domicilio</button>
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <div>
+                <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Factura</label>
+                <input id="invoiceNumber" class="input" readonly>
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Método actual</label>
+                <input id="currentMethodView" class="input" value="Efectivo" readonly>
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Cliente</label>
+                <input id="customerName" class="input" placeholder="Consumidor final">
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Documento</label>
+                <input id="customerDoc" class="input" placeholder="CC: 123456789">
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Teléfono</label>
+                <input id="customerPhone" class="input" placeholder="3001234567">
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Correo</label>
+                <input id="customerEmail" class="input" placeholder="cliente@correo.com">
+              </div>
+            </div>
+
+            <div style="margin-top:16px;">
+              <label style="display:block;font-size:12px;color:#6b7280;margin-bottom:6px;">Pago rápido</label>
+              <input id="quickReceived" class="input" placeholder="¿Con cuánto paga?">
+            </div>
+
+            <div style="margin-top:10px;">
+              <div style="font-size:12px;color:#6b7280;">Devuelta</div>
+              <div style="font-size:22px;font-weight:800;" id="quickChange">$0</div>
+              <div id="quickWarning" style="color:#b45309;font-weight:700;"></div>
+            </div>
+
+            <div style="margin-top:16px;">
+              <button id="payBtn" class="btn btn-primary" style="width:100%;">💳 Cobrar pedido</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ventas" class="page">
+        <div class="card">
+          <h3>Historial de ventas</h3>
+          <input id="salesSearch" class="search" placeholder="Buscar factura, cliente o cajero">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Factura</th>
+                  <th>Fecha</th>
+                  <th>Tipo</th>
+                  <th>Items</th>
+                  <th>Método</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="salesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="cajeros" class="page">
+        <div class="card">
+          <h3>Gestión de cajeros</h3>
+          <small style="color:#6b7280;">Solo el gerente puede ver y editar esta sección</small>
+
+          <div class="grid cols-3" style="margin-top:16px;">
+            <input id="newCashierUser" class="input" placeholder="Usuario">
+            <input id="newCashierPin" class="input" placeholder="Clave">
+            <select id="newCashierRole" class="input">
+              <option value="Cajero">Cajero</option>
+              <option value="Gerente">Gerente</option>
+            </select>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-bottom:18px;">
+            <button class="btn btn-primary" onclick="createCashierFromUI()">➕ Crear usuario</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Aprobado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="cashiersBody">
+                <tr><td colspan="5">Cargando cajeros...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="facturacion" class="page">
+        <div class="card">
+          <h3>📄 Facturación Electrónica</h3>
+          <div class="grid cols-3" style="margin-top:16px;">
+            <input id="factNit" class="input" placeholder="NIT empresa">
+            <input id="factRazonSocial" class="input" placeholder="Razón social">
+            <input id="factResolucion" class="input" placeholder="Resolución DIAN">
+            <input id="factRangoInicial" class="input" placeholder="Rango inicial">
+            <input id="factRangoFinal" class="input" placeholder="Rango final">
+            <input id="factActual" class="input" placeholder="Siguiente factura">
+          </div>
+          <div style="margin-top:14px;">
+            <button class="btn btn-primary" onclick="saveBilling()">💾 Guardar datos</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="rightbar">
+      <h3>💳 Pedido actual</h3>
+      <div style="color:#6b7280;font-size:13px;margin-bottom:10px;">Resumen del carrito</div>
+      <div id="cart" class="cart"></div>
+
+      <div class="totals">
+        <div><span>Subtotal</span><b id="subtotal">$0</b></div>
+        <div><span>Impuesto</span><b id="tax">$0</b></div>
+        <div class="grand"><span>Total</span><span id="total">$0</span></div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="modal open" id="loginModal">
+    <div class="modal-card">
+      <h3>🔐 Abrir caja</h3>
+      <input id="loginUser" class="input" placeholder="Usuario">
+      <input id="loginPin" class="input" type="password" placeholder="Clave">
+      <small id="loginError" style="color:#b91c1c;display:block;margin-top:8px;"></small>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="login()">Ingresar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="paymentModal">
+    <div class="modal-card">
+      <h3>💳 Seleccionar método de pago</h3>
+
+      <div class="payment-methods">
+        <button class="payment-btn active" onclick="selectPaymentMethod('Efectivo', this)">
+          <div class="payment-icon-fallback">💵</div>
+          <div class="payment-title">Efectivo</div>
+          <div class="payment-sub">Pago en caja</div>
+        </button>
+
+        <button class="payment-btn" onclick="selectPaymentMethod('Nequi', this)">
+          <img src="./img/nequi.jpg" alt="Nequi" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="payment-icon-fallback" style="display:none;">📱</div>
+          <div class="payment-title">Nequi</div>
+          <div class="payment-sub">Pago móvil</div>
+        </button>
+
+        <button class="payment-btn" onclick="selectPaymentMethod('PSE', this)">
+          <img src="./img/pse.jpg" alt="PSE" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="payment-icon-fallback" style="display:none;">🏦</div>
+          <div class="payment-title">PSE</div>
+          <div class="payment-sub">Pagos seguros</div>
+        </button>
+
+        <button class="payment-btn" onclick="selectPaymentMethod('Bre-B', this)">
+          <img src="./img/breb.png" alt="Bre-B" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="payment-icon-fallback" style="display:none;">🔐</div>
+          <div class="payment-title">Bre-B</div>
+          <div class="payment-sub">Transferencia inmediata</div>
+        </button>
+
+        <button class="payment-btn" onclick="selectPaymentMethod('Transferencia', this)">
+          <div class="payment-icon-fallback">💳</div>
+          <div class="payment-title">Transferencia</div>
+          <div class="payment-sub">Bancaria</div>
+        </button>
+      </div>
+
+      <div style="margin-top:18px;padding:16px;background:#fff7ed;border-radius:14px;border-left:4px solid #ea580c;">
+        <div style="font-size:12px;color:#6b7280;">Total a cobrar</div>
+        <div id="modalTotal" style="font-size:32px;font-weight:800;color:#9a3412;margin-top:6px;">$0</div>
+      </div>
+
+      <div style="margin-top:12px;padding:12px;background:#f3f4f6;border-radius:14px;font-size:12px;">
+        <b>Método seleccionado: <span id="methodSelected">Efectivo</span></b>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-light" onclick="closePayment()">Cancelar</button>
+        <button id="confirmPayment" class="btn btn-primary">Confirmar venta</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    window.AKI_PRODUCTS = [
+      { id: 'POLLO1', name: 'Pollo Broaster', cat: 'Especialidades', price: 28000, image: './img/bandeja broster.jpg' },
+      { id: 'PAPA1', name: 'Papas Francesas', cat: 'Acompañamientos', price: 6000, image: './img/papas_fritas_001.jpg' },
+      { id: 'GASEOSA1', name: 'Gaseosa 400ml', cat: 'Bebidas', price: 4000, image: './img/20150918191341.jpg' },
+      { id: 'ALITAS1', name: 'Alitas BBQ', cat: 'Especialidades', price: 18000, image: './img/pollo.jpg' },
+      { id: 'ARROZ1', name: 'Arroz con pollo', cat: 'Especialidades', price: 16000, image: './img/arroz con pollo.jpg' },
+      { id: 'JUGO1', name: 'Jugo natural', cat: 'Bebidas', price: 5000, image: './img/ensalada frutas.jpg' }
+    ];
+    window.AKI_CLIENTS = [];
+  </script>
+
+  <script src="./prod_main_Version3.js"></script>
+
+  <script>
+    window.selectPaymentMethod = function (method, btn) {
+      window.APP_STATE.method = method;
+      document.querySelectorAll('.payment-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('methodSelected').textContent = method;
+      const currentMethodView = document.getElementById('currentMethodView');
+      if (currentMethodView) currentMethodView.value = method;
+    };
+
+    window.renderProducts = function () {
+      const grid = document.getElementById('productGrid');
+      const search = document.getElementById('productSearch');
+      if (!grid || !search) return;
+
+      const products = window.APP_STATE.products || [];
+      const category = window.APP_STATE.category || 'Todos';
+      const q = search.value.toLowerCase();
+
+      grid.innerHTML = products
+        .filter(function (p) {
+          const name = String((p && p.name) || '').toLowerCase();
+          const id = String((p && p.id) || '').toLowerCase();
+          const cat = String((p && p.cat) || '');
+          return (category === 'Todos' || cat === category) && (name.includes(q) || id.includes(q));
+        })
+        .map(function (p) {
+          return '' +
+            '<div class="product" onclick="add(\'' + esc(p.id) + '\')">' +
+              '<div class="product-photo" style="background-image:url(&quot;' + (p.image || '') + '&quot;), linear-gradient(135deg,#f59e0b,#ef4444);"></div>' +
+              '<h4 style="margin:0 0 6px;">' + p.name + '</h4>' +
+              '<strong style="display:block;margin-top:8px;color:#9a3412;">' + money(p.price) + '</strong>' +
+              '<small style="color:#6b7280;">Cód. ' + p.id + '</small>' +
+            '</div>';
+        })
+        .join('');
+    };
+
+    document.getElementById('payBtn')?.addEventListener('click', function () {
+      const total = window.APP_STATE.cart.reduce(function(a, r){
+        return a + (Number(r.price) || 0) * (Number(r.qty) || 0);
+      }, 0);
+
+      if (!window.APP_STATE.cart.length) {
+        toast('Agregue primero un producto');
+        return;
+      }
+
+      setText('modalTotal', money(total));
+      document.getElementById('paymentModal')?.classList.add('open');
+    });
+
+    document.getElementById('confirmPayment')?.addEventListener('click', function () {
+      completeSale();
+      document.getElementById('paymentModal')?.classList.remove('open');
+    });
+  </script>
+</body>
+</html>

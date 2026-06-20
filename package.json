@@ -1,0 +1,55 @@
+{
+  "name": "aki-pollo-pos",
+  "version": "1.0.0",
+  "description": "AKI POLLO POS",
+  "main": "main.js",
+  "author": "AKI POLLO",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable nsis"
+  },
+  "devDependencies": {
+    "electron": "^37.10.3",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.akipollo.pos",
+    "productName": "AKI POLLO POS",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "prod_main_Version3.js",
+      "img/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "AKI-POLLO-POS-${version}-${target}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "AKI POLLO POS"
+    }
+  }
+}
