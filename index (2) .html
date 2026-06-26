@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aki Pollo Broaster</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topbar">
+    Domicilios rápidos • Sabor broaster • Galicia y Panamericana
+  </div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="aki-pollo-assets/logo-aki-pollo.png" alt="Logo Aki Pollo">
+        <div class="brand-text">
+          <h1>Aki Pollo</h1>
+          <p>Broaster • Galicia y Panamericana</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="search">
+          <input type="text" placeholder="Buscar platos...">
+        </div>
+        <button class="btn btn-admin" type="button" data-open-admin>Subir plato</button>
+        <button class="btn btn-primary">Mi cuenta</button>
+        <button class="btn btn-dark">Carrito</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <h2>El sabor broaster que sí provoca volver</h2>
+            <p>
+              Bandejas, arroz con pollo, chuleta, filete, acompañamientos
+              y domicilios rápidos para que comas rico sin complicarte.
+            </p>
+
+            <div class="hero-tags">
+              <span class="tag">Domicilios</span>
+              <span class="tag">25 años</span>
+              <span class="tag">Sabor casero</span>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary">Ver menú</button>
+              <button class="btn btn-admin" type="button" data-open-admin>Subir plato con foto</button>
+            </div>
+          </div>
+
+          <div class="hero-image">
+            <img src="aki-pollo-assets/logo-aki-pollo-profesional.png" alt="Banner Aki Pollo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h3>Nuestro menú</h3>
+            <p>Escoge tus platos favoritos</p>
+          </div>
+          <button class="btn btn-admin" type="button" data-open-admin>Agregar plato</button>
+        </div>
+
+        <div class="filters">
+          <button class="chip active">Todos</button>
+          <button class="chip">Broaster</button>
+          <button class="chip">Especiales</button>
+          <button class="chip">Arroces</button>
+          <button class="chip">Acompañamientos</button>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/bandeja-broaster.jpg" alt="Bandeja Broaster">
+            </div>
+            <div class="card-body">
+              <span class="badge">Más vendido</span>
+              <h4>Bandeja Broaster</h4>
+              <p>Pollo broaster crujiente con acompañamiento.</p>
+              <div class="price-row">
+                <span class="price">$18.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/bandeja-especial.jpg" alt="Bandeja Especial">
+            </div>
+            <div class="card-body">
+              <span class="badge">Recomendada</span>
+              <h4>Bandeja Especial</h4>
+              <p>Combinación especial de la casa.</p>
+              <div class="price-row">
+                <span class="price">$22.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/arroz-con-pollo.jpg" alt="Arroz con pollo">
+            </div>
+            <div class="card-body">
+              <span class="badge">Casero</span>
+              <h4>Arroz con Pollo</h4>
+              <p>Arroz sazonado con pollo y verduras.</p>
+              <div class="price-row">
+                <span class="price">$16.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/bandeja-chuleta.jpg" alt="Bandeja Chuleta">
+            </div>
+            <div class="card-body">
+              <span class="badge">Favorita</span>
+              <h4>Bandeja Chuleta</h4>
+              <p>Chuleta crocante con guarnición.</p>
+              <div class="price-row">
+                <span class="price">$20.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/filete-pollo.jpg" alt="Filete de pollo">
+            </div>
+            <div class="card-body">
+              <span class="badge">Nuevo</span>
+              <h4>Filete de Pollo</h4>
+              <p>Filete jugoso con excelente sabor.</p>
+              <div class="price-row">
+                <span class="price">$19.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/consome.jpg" alt="Consomé">
+            </div>
+            <div class="card-body">
+              <span class="badge">Acompañante</span>
+              <h4>Consomé</h4>
+              <p>Calientico y perfecto para acompañar.</p>
+              <div class="price-row">
+                <span class="price">$7.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/ensalada-frutas.jpg" alt="Ensalada de frutas">
+            </div>
+            <div class="card-body">
+              <span class="badge">Fresco</span>
+              <h4>Ensalada de Frutas</h4>
+              <p>Opción fresca y deliciosa.</p>
+              <div class="price-row">
+                <span class="price">$8.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="aki-pollo-assets/papas.jpg" alt="Papas">
+            </div>
+            <div class="card-body">
+              <span class="badge">Crujientes</span>
+              <h4>Papas</h4>
+              <p>Papas doradas para completar tu pedido.</p>
+              <div class="price-row">
+                <span class="price">$6.000</span>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="payments">
+          <div class="section-title">
+            <div>
+              <h3>Medios de pago</h3>
+              <p>Paga como te quede más cómodo</p>
+            </div>
+            <button class="btn btn-admin" type="button" data-open-admin>Subir nuevo plato</button>
+          </div>
+
+          <div class="payment-logos">
+            <div class="payment-item">
+              <img src="aki-pollo-assets/breb.png" alt="Breb">
+            </div>
+            <div class="payment-item">
+              <img src="aki-pollo-assets/nequi.jpg" alt="Nequi">
+            </div>
+            <div class="payment-item">
+              <img src="aki-pollo-assets/daviplata.png" alt="Daviplata">
+            </div>
+            <div class="payment-item">
+              <img src="aki-pollo-assets/pse.jpg" alt="PSE">
+            </div>
+            <div class="payment-item">
+              <img src="aki-pollo-assets/mastercard.png" alt="Mastercard">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="cart-fab">🛒</button>
+  <button class="admin-fab" type="button" data-open-admin>＋</button>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Aki Pollo</h4>
+        <p>
+          Sabor broaster con atención rápida, menú variado
+          y domicilios para Galicia y Panamericana.
+        </p>
+      </div>
+
+      <div>
+        <h4>Horarios</h4>
+        <ul>
+          <li>Lunes a domingo</li>
+          <li>11:00 AM - 10:00 PM</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li>Galicia</li>
+          <li>Panamericana</li>
+          <li>Domicilios disponibles</li>
+        </ul>
+      </div>
+
+      <div class="footer-admin">
+        <h4>Administrador</h4>
+        <p>Agrega platos, fotos y precios desde cualquier parte de la página.</p>
+        <button class="btn btn-admin" type="button" data-open-admin>Administrar platos</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="admin-modal" id="adminModal">
+    <div class="admin-modal-content">
+      <div class="admin-header">
+        <h3>Administrador de platos</h3>
+        <button id="closeAdmin" class="btn btn-dark" type="button">Cerrar</button>
+      </div>
+
+      <form id="adminForm" class="admin-form">
+        <input type="hidden" name="productId">
+
+        <label>Nombre</label>
+        <input type="text" name="name" required>
+
+        <label>Precio</label>
+        <input type="number" name="price" required>
+
+        <label>Etiqueta</label>
+        <input type="text" name="badge" placeholder="Ej: Nuevo">
+
+        <label>Categoría</label>
+        <input type="text" name="category" placeholder="Ej: Broaster" required>
+
+        <label>Descripción</label>
+        <textarea name="description" required></textarea>
+
+        <label>Ruta de imagen</label>
+        <input type="text" name="img" placeholder="aki-pollo-assets/mi-imagen.jpg">
+
+        <label>O subir imagen desde tu PC</label>
+        <input type="file" id="adminFile" accept="image/*">
+
+        <img id="adminPreview" alt="Vista previa" style="display:none; max-width:100%; border-radius:12px; margin-top:10px;">
+
+        <button type="submit" class="btn btn-primary">Guardar plato</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
